@@ -6,6 +6,8 @@ description: NUS 2017-2019 GES Employment Rates and Salaries of Graduates by Bac
 
 ## Welcome to another page
 
+### Large image
+![Employment Rate](./_assets/2019 Employment Rate.PNG)
 _yay_
 
 [back](./)
