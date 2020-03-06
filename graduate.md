@@ -1,6 +1,6 @@
 ---
 layout: default
-title: NUS Graduate Employment Report
+title: NUS Graduate Employment Survey
 description: NUS 2017-2019 GES Employment Rates and Salaries of Graduates by Bachelor Degree (Datasource, Ministry of Education, Singapore)
 ---
 
