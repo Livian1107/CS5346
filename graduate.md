@@ -69,4 +69,15 @@ This chart contains 2017-2019 gross monthly salary 75th percentile yearly trend 
 
 [![](http://drive.google.com/uc?export=view&id=1hmtq0gJuxKRK55YIzE7NKucQnyhY9J1T)](http://drive.google.com/uc?export=view&id=1hmtq0gJuxKRK55YIzE7NKucQnyhY9J1T)
 
+_Note_
+> NUS: 2019 GES Employment Rates and Salaries of Graduates by Bachelor Degree.
+> 6,609 fresh graduates and 870 follow-up graduates from NUS were surveyed in November 2019 and the overall response rates obtained were 77.9% and 74.7% respectively. 
+>
+> NUS: 2018 GES Employment Rates and Salaries of Graduates by Bachelor Degree.
+> 6,699 full-time graduates and 877 follow-up graduates from NUS were surveyed in November 2018 and the overall response rates obtained were 76.3% and 68.4% respectively.
+>
+> NUS: 2017 GES Employment Rates and Salaries of Graduates by Bachelor Degree.
+> 6,466 full-time graduates and 825 follow-up graduates from NUS were surveyed in November 2017 and the overall response rates obtained were 80.6% and 72.1% respectively. 
+
+
 [back](./)
