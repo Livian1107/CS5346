@@ -5,130 +5,105 @@
 <script src="https://d3js.org/d3.v4.js"></script>	<!-- This downloads d3 library -->
 
 <script>
-//This code will visualize a data set as a simple scatter chart using d3. I omit axes for simplicity.
-var data = [		//This is the data we want to visualize. 
-					//In reality it usually comes from a file or database.
-  {x: 10,	y: 10},
-  {x: 10,	y: 20},
-  {x: 10,	y: 30},
-  {x: 10,	y: 40},
-  {x: 10,	y: 50},
-  {x: 10,	y: 80},
-  {x: 10,	y: 90},
-  {x: 10,	y: 100},
-  {x: 10,	y: 110},
-  {x: 20,	y: 30},
-  {x: 20,	y: 120},
-  {x: 30,	y: 10},
-  {x: 30,	y: 20},
-  {x: 30,	y: 30},
-  {x: 30,	y: 40},
-  {x: 30,	y: 50},
-  {x: 30,	y: 80},
-  {x: 30,	y: 90},
-  {x: 30,	y: 100},
-  {x: 30,	y: 110},
-  {x: 40,	y: 120},
-  {x: 50,	y: 10},
-  {x: 50,	y: 20},
-  {x: 50,	y: 30},
-  {x: 50,	y: 40},
-  {x: 50,	y: 50},
-  {x: 50,	y: 80},
-  {x: 50,	y: 90},
-  {x: 50,	y: 100},
-  {x: 50,	y: 110},
-  {x: 60,	y: 10},
-  {x: 60,	y: 30},
-  {x: 60,	y: 50},
-  {x: 70,	y: 10},
-  {x: 70,	y: 30},
-  {x: 70,	y: 50},
-  {x: 70,	y: 90},
-  {x: 70,	y: 100},
-  {x: 70,	y: 110},
-  {x: 80,	y: 80},
-  {x: 80,	y: 120},
-  {x: 90,	y: 10},
-  {x: 90,	y: 20},
-  {x: 90,	y: 30},
-  {x: 90,	y: 40},
-  {x: 90,	y: 50},
-  {x: 90,	y: 80},
-  {x: 90,	y: 120},
-  {x: 100,	y: 50},
-  {x: 100,	y: 90},
-  {x: 100,	y: 100},
-  {x: 100,	y: 110},
-  {x: 110,	y: 50},
-  {x: 120,	y: 80},
-  {x: 120,	y: 90},
-  {x: 120,	y: 100},
-  {x: 120,	y: 110},
-  {x: 120,	y: 120},
-  {x: 130,	y: 10},
-  {x: 130,	y: 20},
-  {x: 130,	y: 30},
-  {x: 130,	y: 40},
-  {x: 130,	y: 50},
-  {x: 130,	y: 80},
-  {x: 130,	y: 100},
-  {x: 140,	y: 50},
-  {x: 140,	y: 80},
-  {x: 140,	y: 100},
-  {x: 140,	y: 110},  
-  {x: 150,	y: 50},
-  {x: 150,	y: 90},
-  {x: 150,	y: 120},
-  {x: 170,	y: 20},
-  {x: 170,	y: 30},
-  {x: 170,	y: 40},
-  {x: 170,	y: 80},
-  {x: 170,	y: 90},  
-  {x: 170,	y: 100},
-  {x: 170,	y: 110},
-  {x: 170,	y: 120},
-  {x: 180,	y: 10},
-  {x: 180,	y: 50},
-  {x: 180,	y: 120},
-  {x: 190,	y: 10},
-  {x: 190,	y: 50},
-  {x: 190,	y: 120},
-  {x: 200,	y: 20},
-  {x: 200,	y: 30},  
-  {x: 200,	y: 40},
-  {x: 210,	y: 80},
-  {x: 210,	y: 90},
-  {x: 210,	y: 100},
-  {x: 210,	y: 110},  
-  {x: 210,	y: 120},
-  {x: 220,	y: 80},  
-  {x: 220,	y: 120},
-  {x: 230,	y: 80},  
-  {x: 230,	y: 120},
-  {x: 240,	y: 90},
-  {x: 240,	y: 100},  
-  {x: 240,	y: 110},
-  {x: 270,	y: 70},
-  {x: 270,	y: 80},
-  {x: 270,	y: 90},
-  {x: 270,	y: 100},  
-  {x: 270,	y: 120}
-];
+chart = {  
+  const svg = d3.create("svg")
+      .attr("viewBox", [0, 0, width, height]);
 
-//The following code chains a bunch of methods. Method chaining is what makes d3 very simple and concise.
-d3.select("body").append("svg").selectAll()		//'d3' calls the d3 library
-												//'.select' selects the object (in this case the body of HTML)
-												//'.append' adds SVG element to the body
-												//'.selectAll()' selects all SVG elements
-	.data(data)									//'.data' gets the data from the variable 'data'
-  .enter().append("circle")						//'.enter' enters the data into the SVG 
-  												//the data enter as circles with '.append("circle")'
-    .attr("r", 3)								//'.attr' adds/alters atributes of SVG, 
-    											//such as radius ("r"), making it 3 pixels
-    .attr("cx", function(d) { return d.x; })	//coordinates "cx" (circles' x coordinates)
-    .attr("cy", function(d) { return d.y; })	//coordinates "cy" (circles' y coordinates)
-    .style("fill", "darkblue");					//'.style' changes CSS of the SVG
-    											//in this case, fills circles with "darkblue" color
+  svg.append("g")
+    .selectAll("g")
+    .data(series)
+    .join("g")
+      .attr("fill", ({key}) => color(key))
+      .call(g => g.selectAll("rect")
+        .data(d => d)
+        .join("rect")
+          .attr("x", d => x(d.data.year))
+          .attr("y", d => y(d[1]))
+          .attr("width", x.bandwidth() - 1)
+          .attr("height", d => y(d[0]) - y(d[1]))
+       .append("title")
+          .text(d => `${d.data.name}, ${d.data.year}
+${formatRevenue(d.data.value)}`));
 
+  svg.append("g")
+      .call(xAxis);
+
+  svg.append("g")
+      .call(yAxis);
+
+  return svg.node();
+}
+
+data = Object.assign(d3.csvParse(await FileAttachment("music.csv").text(), ({Format, Year, ["Revenue (Inflation Adjusted)"]: Revenue}) => ({name: Format, year: +Year, value: +Revenue})), {y: "Revenue (billions, adj.)"})
+
+colors = new Map([
+  ["LP/EP", "#2A5784"],
+  ["Vinyl Single", "#43719F"],
+  ["8 - Track", "#5B8DB8"],
+  ["Cassette", "#7AAAD0"],
+  ["Cassette Single", "#9BC7E4"],
+  ["Other Tapes", "#BADDF1"],
+  ["Kiosk", "#E1575A"],
+  ["CD", "#EE7423"],
+  ["CD Single", "#F59D3D"],
+  ["SACD", "#FFC686"],
+  ["DVD Audio", "#9D7760"],
+  ["Music Video (Physical)", "#F1CF63"],
+  ["Download Album", "#7C4D79"],
+  ["Download Single", "#9B6A97"],
+  ["Ringtones & Ringbacks", "#BE89AC"],
+  ["Download Music Video", "#D5A5C4"],
+  ["Other Digital", "#EFC9E6"],
+  ["Synchronization", "#BBB1AC"],
+  ["Paid Subscription", "#24693D"],
+  ["On-Demand Streaming (Ad-Supported)", "#398949"],
+  ["Other Ad-Supported Streaming", "#61AA57"],
+  ["SoundExchange Distributions", "#7DC470"],
+  ["Limited Tier Paid Subscription", "#B4E0A7"]
+])
+	
+series = d3.stack()
+    .keys(Array.from(colors.keys()))
+    .value((group, key) => group.get(key).value)
+    .order(d3.stackOrderReverse)
+  (Array.from(d3.rollup(data, ([d]) => d, d => d.year, d => d.name).values()))
+    .map(s => (s.forEach(d => d.data = d.data.get(s.key)), s))
+
+x = d3.scaleBand()
+    .domain(data.map(d => d.year))
+    .rangeRound([margin.left, width - margin.right])
+	
+y = d3.scaleLinear()
+    .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]).nice()
+    .range([height - margin.bottom, margin.top])
+
+color = d3.scaleOrdinal()
+    .domain(Array.from(colors.keys()))
+    .range(Array.from(colors.values()))
+	
+xAxis = g => g
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x)
+        .tickValues(d3.ticks(...d3.extent(x.domain()), width / 80))
+        .tickSizeOuter(0))
+	
+yAxis = g => g
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y)
+        .tickFormat(x => (x / 1e9).toFixed(0)))
+    .call(g => g.select(".domain").remove())
+    .call(g => g.select(".tick:last-of-type text").clone()
+        .attr("x", 3)
+        .attr("text-anchor", "start")
+        .attr("font-weight", "bold")
+        .text(data.y))
+	
+formatRevenue = x => (+(x / 1e9).toFixed(2) >= 1) 
+    ? `${(x / 1e9).toFixed(2)}B` 
+    : `${(x / 1e6).toFixed(0)}M`
+
+height = 500
+margin = ({top: 20, right: 30, bottom: 30, left: 30})
+d3 = require("d3@5", "d3-array@2")
+import {swatches} from "@d3/color-legend"
 </script>
