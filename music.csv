@@ -1,0 +1,553 @@
+﻿Format,Year,Units,Revenue,Cost
+Old Kent Road,1,15000000,0,60
+Old Kent Road,2,15300000,872,0
+Old Kent Road,3,16200000,988,0
+Old Kent Road,4,21800000,1457,0
+Old Kent Road,5,36900000,2496,0
+Old Kent Road,6,61300000,4498,0
+Old Kent Road,7,78500000,5806,30
+Old Kent Road,8,99000000,7050,0
+Old Kent Road,9,124000000,10628,0
+Old Kent Road,10,183200000,13845,0
+Old Kent Road,11,236800000,18109,0
+Old Kent Road,12,332000000,23839,0
+Old Kent Road,13,339100000,24115,0
+Old Kent Road,14,344500000,24995,0
+Old Kent Road,15,410000000,29597,0
+Old Kent Road,16,450100000,33851,0
+Old Kent Road,17,446200000,33458,30
+Old Kent Road,18,442200000,34724,0
+Old Kent Road,19,360100000,30196,0
+Old Kent Road,20,366400000,31163,0
+Old Kent Road,21,339500000,29158,0
+Old Kent Road,22,345400000,29764,0
+Old Kent Road,23,272600000,23036,0
+Old Kent Road,24,225300000,19053,0
+Old Kent Road,25,172600000,15227,0
+Old Kent Road,26,158500000,14199,0
+Old Kent Road,27,123600000,10616,0
+Old Kent Road,28,76000000,6260,0
+Old Kent Road,29,45000000,3634,30
+Old Kent Road,30,31100000,2098,0
+Old Kent Road,31,17200000,1081,0
+Old Kent Road,32,5200000,237,0
+Old Kent Road,33,2500000,131,0
+Old Kent Road,34,700000,37,0
+Old Kent Road,35,400000,30,0
+Old Kent Road,36,100000,9,0
+Old Kent Road,37,0,0,0
+Old Kent Road,38,0,0,0
+Old Kent Road,39,0,0,0
+Old Kent Road,40,0,0,0
+Old Kent Road,41,0,0,0
+Old Kent Road,42,0,0,0
+Old Kent Road,43,0,0,0
+Old Kent Road,44,0,0,0
+Old Kent Road,45,0,0,0
+Old Kent Road,46,0,0,0
+Old Kent Road Single,1,0,0,0
+Old Kent Road Single,2,0,0,0
+Old Kent Road Single,3,0,0,0
+Old Kent Road Single,4,0,0,0
+Old Kent Road Single,5,0,0,0
+Old Kent Road Single,6,0,0,0
+Old Kent Road Single,7,0,0,0
+Old Kent Road Single,8,0,0,0
+Old Kent Road Single,9,0,0,0
+Old Kent Road Single,10,0,0,0
+Old Kent Road Single,11,0,0,0
+Old Kent Road Single,12,0,0,0
+Old Kent Road Single,13,0,0,0
+Old Kent Road Single,14,0,0,0
+Old Kent Road Single,15,5100000,143,0
+Old Kent Road Single,16,22500000,573,0
+Old Kent Road Single,17,76200000,1946,0
+Old Kent Road Single,18,87400000,2579,0
+Old Kent Road Single,19,69000000,2304,0
+Old Kent Road Single,20,84600000,2988,0
+Old Kent Road Single,21,85600000,2985,0
+Old Kent Road Single,22,81100000,2749,30
+Old Kent Road Single,23,70700000,2363,0
+Old Kent Road Single,24,59900000,1893,0
+Old Kent Road Single,25,42200000,1335,0
+Old Kent Road Single,26,26400000,944,0
+Old Kent Road Single,27,14200000,480,0
+Old Kent Road Single,28,1300000,46,0
+Old Kent Road Single,29,-1500000,0,0
+Old Kent Road Single,30,-500000,0,0
+Old Kent Road Single,31,0,0,0
+Old Kent Road Single,32,0,0,0
+Old Kent Road Single,33,0,0,0
+Old Kent Road Single,34,0,0,0
+Old Kent Road Single,35,0,0,0
+Old Kent Road Single,36,0,0,0
+Old Kent Road Single,37,0,0,0
+Old Kent Road Single,38,0,0,0
+Old Kent Road Single,39,0,0,0
+Old Kent Road Single,40,0,0,0
+Old Kent Road Single,41,0,0,0
+Old Kent Road Single,42,0,0,0
+Old Kent Road Single,43,0,0,0
+Old Kent Road Single,44,0,0,0
+Old Kent Road Single,45,0,0,0
+Old Kent Road Single,46,0,0,0
+Whitechapel Road,1,0,0,0
+Whitechapel Road,2,0,0,0
+Whitechapel Road,3,0,0,0
+Whitechapel Road,4,0,0,0
+Whitechapel Road,5,0,0,0
+Whitechapel Road,6,0,0,0
+Whitechapel Road,7,0,0,0
+Whitechapel Road,8,0,0,0
+Whitechapel Road,9,0,0,0
+Whitechapel Road,10,0,0,60
+Whitechapel Road,11,800000,172,0
+Whitechapel Road,12,5800000,1033,0
+Whitechapel Road,13,22600000,3895,0
+Whitechapel Road,14,53000000,9301,0
+Whitechapel Road,15,102100000,15936,0
+Whitechapel Road,16,149700000,20899,0
+Whitechapel Road,17,207200000,25877,0
+Whitechapel Road,18,286500000,34516,0
+Whitechapel Road,19,333300000,43377,0
+Whitechapel Road,20,407500000,53265,30
+Whitechapel Road,21,495400000,65114,0
+Whitechapel Road,22,662100000,84645,0
+Whitechapel Road,23,722900000,93774,0
+Whitechapel Road,24,778900000,99347,0
+Whitechapel Road,25,753100000,99151,0
+Whitechapel Road,26,847000000,114160,30
+Whitechapel Road,27,938900000,128163,0
+Whitechapel Road,28,942500000,132145,0
+Whitechapel Road,29,881900000,129094,0
+Whitechapel Road,30,803300000,120441,0
+Whitechapel Road,31,746000000,112329,0
+Whitechapel Road,32,767000000,114465,0
+Whitechapel Road,33,705400000,105202,0
+Whitechapel Road,34,619700000,93726,0
+Whitechapel Road,35,499700000,74523,0
+Whitechapel Road,36,368400000,54713,0
+Whitechapel Road,37,296600000,43188,0
+Whitechapel Road,38,253000000,33894,0
+Whitechapel Road,39,240800000,31007,0
+Whitechapel Road,40,198200000,24856,0
+Whitechapel Road,41,173800000,21409,0
+Whitechapel Road,42,138700000,17762,0
+Whitechapel Road,43,117100000,14450,100
+Whitechapel Road,44,97600000,11308,0
+Whitechapel Road,45,87700000,10573,0
+Whitechapel Road,46,52000000,6984,0
+Whitechapel Road Single,1,0,0,0
+Whitechapel Road Single,2,0,0,0
+Whitechapel Road Single,3,0,0,0
+Whitechapel Road Single,4,0,0,0
+Whitechapel Road Single,5,0,0,0
+Whitechapel Road Single,6,0,0,0
+Whitechapel Road Single,7,0,0,0
+Whitechapel Road Single,8,0,0,0
+Whitechapel Road Single,9,0,0,0
+Whitechapel Road Single,10,0,0,0
+Whitechapel Road Single,11,0,0,0
+Whitechapel Road Single,12,0,0,0
+Whitechapel Road Single,13,0,0,0
+Whitechapel Road Single,14,0,0,0
+Whitechapel Road Single,15,0,0,0
+Whitechapel Road Single,16,1600000,98,0
+Whitechapel Road Single,17,-100000,0,0
+Whitechapel Road Single,18,1100000,60,0
+Whitechapel Road Single,19,5700000,351,0
+Whitechapel Road Single,20,7300000,451,0
+Whitechapel Road Single,21,7800000,458,0
+Whitechapel Road Single,22,9300000,561,0
+Whitechapel Road Single,23,21500000,1109,0
+Whitechapel Road Single,24,43200000,1841,0
+Whitechapel Road Single,25,66700000,2727,0
+Whitechapel Road Single,26,56000000,2132,0
+Whitechapel Road Single,27,55900000,2224,0
+Whitechapel Road Single,28,34200000,1427,0
+Whitechapel Road Single,29,17300000,794,0
+Whitechapel Road Single,30,4500000,196,0
+Whitechapel Road Single,31,8300000,360,0
+Whitechapel Road Single,32,3100000,150,0
+Whitechapel Road Single,33,2800000,109,0
+Whitechapel Road Single,34,1700000,77,0
+Whitechapel Road Single,35,2600000,122,0
+Whitechapel Road Single,36,700000,35,0
+Whitechapel Road Single,37,900000,31,0
+Whitechapel Road Single,38,1000000,29,0
+Whitechapel Road Single,39,1300000,35,0
+Whitechapel Road Single,40,1100000,32,0
+Whitechapel Road Single,41,600000,24,0
+Whitechapel Road Single,42,900000,36,0
+Whitechapel Road Single,43,400000,12,0
+Whitechapel Road Single,44,100000,3,0
+Whitechapel Road Single,45,100000,15,0
+Whitechapel Road Single,46,0,2,0
+Pentonville Road,1,0,0,0
+Pentonville Road,2,0,0,0
+Pentonville Road,3,0,0,0
+Pentonville Road,4,0,0,0
+Pentonville Road,5,0,0,0
+Pentonville Road,6,0,0,0
+Pentonville Road,7,0,0,0
+Pentonville Road,8,0,0,0
+Pentonville Road,9,0,0,0
+Pentonville Road,10,0,0,0
+Pentonville Road,11,0,0,0
+Pentonville Road,12,0,0,0
+Pentonville Road,13,0,0,0
+Pentonville Road,14,0,0,0
+Pentonville Road,15,0,0,0
+Pentonville Road,16,0,0,0
+Pentonville Road,17,0,0,0
+Pentonville Road,18,0,0,0
+Pentonville Road,19,0,0,0
+Pentonville Road,20,0,0,0
+Pentonville Road,21,0,0,0
+Pentonville Road,22,0,0,0
+Pentonville Road,23,0,0,0
+Pentonville Road,24,0,0,0
+Pentonville Road,25,0,0,0
+Pentonville Road,26,0,0,0
+Pentonville Road,27,0,0,0
+Pentonville Road,28,0,0,0
+Pentonville Road,29,0,0,0
+Pentonville Road,30,0,0,0
+Pentonville Road,31,0,0,120
+Pentonville Road,32,4600000,455,0
+Pentonville Road,33,13600000,1357,0
+Pentonville Road,34,27600000,2759,0
+Pentonville Road,35,49800000,4974,0
+Pentonville Road,36,63600000,6353,0
+Pentonville Road,37,74500000,7443,0
+Pentonville Road,38,85800000,8724,0
+Pentonville Road,39,103900000,10708,0
+Pentonville Road,40,116700000,12048,0
+Pentonville Road,41,118000000,12321,0
+Pentonville Road,42,114200000,11179,0
+Pentonville Road,43,106800000,10644,100
+Pentonville Road,44,85100000,8686,0
+Pentonville Road,45,66400000,6685,0
+Pentonville Road,46,49700000,4997,0
+The Strand,1,0,0,0
+The Strand,2,0,0,0
+The Strand,3,0,0,0
+The Strand,4,0,0,0
+The Strand,5,0,0,0
+The Strand,6,0,0,0
+The Strand,7,0,0,0
+The Strand,8,0,0,0
+The Strand,9,0,0,0
+The Strand,10,0,0,0
+The Strand,11,0,0,0
+The Strand,12,0,0,0
+The Strand,13,0,0,0
+The Strand,14,0,0,0
+The Strand,15,0,0,0
+The Strand,16,0,0,0
+The Strand,17,0,0,0
+The Strand,18,0,0,0
+The Strand,19,0,0,0
+The Strand,20,0,0,0
+The Strand,21,0,0,0
+The Strand,22,0,0,0
+The Strand,23,0,0,0
+The Strand,24,0,0,0
+The Strand,25,0,0,0
+The Strand,26,0,0,0
+The Strand,27,0,0,0
+The Strand,28,0,0,0
+The Strand,29,0,0,0
+The Strand,30,0,0,0
+The Strand,31,0,0,0
+The Strand,32,0,0,220
+The Strand,33,1900000,37,0
+The Strand,34,9900000,197,0
+The Strand,35,14200000,282,0
+The Strand,36,20800000,413,0
+The Strand,37,20500000,409,0
+The Strand,38,18400000,366,110
+The Strand,39,16300000,324,0
+The Strand,40,10500000,208,0
+The Strand,41,8400000,167,0
+The Strand,42,6800000,136,0
+The Strand,43,3200000,64,0
+The Strand,44,2100000,43,100
+The Strand,45,1400000,28,0
+The Strand,46,1100000,22,0
+Piccadilly,1,0,0,0
+Piccadilly,2,0,0,0
+Piccadilly,3,0,0,0
+Piccadilly,4,0,0,0
+Piccadilly,5,0,0,0
+Piccadilly,6,0,0,0
+Piccadilly,7,0,0,0
+Piccadilly,8,0,0,0
+Piccadilly,9,0,0,0
+Piccadilly,10,0,0,0
+Piccadilly,11,0,0,0
+Piccadilly,12,0,0,0
+Piccadilly,13,0,0,0
+Piccadilly,14,0,0,0
+Piccadilly,15,0,0,0
+Piccadilly,16,0,0,0
+Piccadilly,17,0,0,0
+Piccadilly,18,0,0,0
+Piccadilly,19,0,0,0
+Piccadilly,20,0,0,0
+Piccadilly,21,0,0,0
+Piccadilly,22,0,0,0
+Piccadilly,23,0,0,0
+Piccadilly,24,0,0,0
+Piccadilly,25,0,0,0
+Piccadilly,26,0,0,0
+Piccadilly,27,0,0,0
+Piccadilly,28,0,0,0
+Piccadilly,29,0,0,0
+Piccadilly,30,0,0,0
+Piccadilly,31,0,0,280
+Piccadilly,32,139400000,1380,0
+Piccadilly,33,366900000,3633,140
+Piccadilly,34,586400000,5806,0
+Piccadilly,35,819400000,8110,0
+Piccadilly,36,1042700000,10322,0
+Piccadilly,37,1124400000,11720,0
+Piccadilly,38,1177400000,13364,0
+Piccadilly,39,1332300000,15224,0
+Piccadilly,40,1402700000,16446,0
+Piccadilly,41,1332800000,15734,0
+Piccadilly,42,1154400000,13553,0
+Piccadilly,43,986300000,11852,0
+Piccadilly,44,743000000,9002,140
+Piccadilly,45,553500000,6785,0
+Piccadilly,46,399800000,4904,0
+Oxford Street,1,0,0,0
+Oxford Street,2,0,0,0
+Oxford Street,3,0,0,0
+Oxford Street,4,0,0,0
+Oxford Street,5,0,0,0
+Oxford Street,6,0,0,0
+Oxford Street,7,0,0,0
+Oxford Street,8,0,0,0
+Oxford Street,9,0,0,0
+Oxford Street,10,0,0,0
+Oxford Street,11,0,0,0
+Oxford Street,12,0,0,0
+Oxford Street,13,0,0,0
+Oxford Street,14,0,0,0
+Oxford Street,15,0,0,0
+Oxford Street,16,0,0,0
+Oxford Street,17,0,0,0
+Oxford Street,18,0,0,0
+Oxford Street,19,0,0,0
+Oxford Street,20,0,0,0
+Oxford Street,21,0,0,0
+Oxford Street,22,0,0,0
+Oxford Street,23,0,0,0
+Oxford Street,24,0,0,0
+Oxford Street,25,0,0,0
+Oxford Street,26,0,0,0
+Oxford Street,27,0,0,0
+Oxford Street,28,0,0,300
+Oxford Street,29,263000,60,0
+Oxford Street,30,430000,85,0
+Oxford Street,31,400000,80,0
+Oxford Street,32,300000,65,0
+Oxford Street,33,500000,112,0
+Oxford Street,34,100000,24,0
+Oxford Street,35,200000,28,0
+Oxford Street,36,40000,12,0
+Oxford Street,37,100000,16,0
+Oxford Street,38,40000,9,0
+Oxford Street,39,10000,3,0
+Oxford Street,40,0,2,150
+Oxford Street,41,-100000,0,0
+Oxford Street,42,100000,21,0
+Oxford Street,43,200000,54,0
+Oxford Street,44,100000,28,0
+Oxford Street,45,100000,26,150
+Oxford Street,46,100000,33,0
+Park Lane,1,0,0,0
+Park Lane,2,0,0,0
+Park Lane,3,0,0,0
+Park Lane,4,0,0,0
+Park Lane,5,0,0,0
+Park Lane,6,0,0,0
+Park Lane,7,0,0,0
+Park Lane,8,0,0,0
+Park Lane,9,0,0,0
+Park Lane,10,0,0,0
+Park Lane,11,0,0,0
+Park Lane,12,0,0,0
+Park Lane,13,0,0,0
+Park Lane,14,0,0,0
+Park Lane,15,0,0,0
+Park Lane,16,0,0,0
+Park Lane,17,0,0,0
+Park Lane,18,0,0,0
+Park Lane,19,0,0,0
+Park Lane,20,0,0,0
+Park Lane,21,0,0,0
+Park Lane,22,0,0,0
+Park Lane,23,0,0,0
+Park Lane,24,0,0,0
+Park Lane,25,0,0,0
+Park Lane,26,0,0,0
+Park Lane,27,0,0,0
+Park Lane,28,0,0,0
+Park Lane,29,0,0,0
+Park Lane,30,0,0,0
+Park Lane,31,0,0,0
+Park Lane,32,0,0,350
+Park Lane,33,700000,10,0
+Park Lane,34,1400000,19,0
+Park Lane,35,1800000,26,0
+Park Lane,36,1600000,26,0
+Park Lane,37,1700000,63,175
+Park Lane,38,1700000,64,0
+Park Lane,39,1300000,27,0
+Park Lane,40,2000000,37,175
+Park Lane,41,3700000,62,0
+Park Lane,42,1600000,26,0
+Park Lane,43,2200000,37,0
+Park Lane,44,1700000,29,0
+Park Lane,45,1300000,23,0
+Park Lane,46,1100000,20,0
+Mayfair,1,0,0,0
+Mayfair,2,0,0,0
+Mayfair,3,0,0,0
+Mayfair,4,0,0,0
+Mayfair,5,0,0,0
+Mayfair,6,0,0,0
+Mayfair,7,0,0,0
+Mayfair,8,0,0,0
+Mayfair,9,0,0,0
+Mayfair,10,0,0,0
+Mayfair,11,0,0,0
+Mayfair,12,0,0,0
+Mayfair,13,0,0,0
+Mayfair,14,0,0,0
+Mayfair,15,0,0,0
+Mayfair,16,0,0,0
+Mayfair,17,0,0,0
+Mayfair,18,0,0,0
+Mayfair,19,0,0,0
+Mayfair,20,0,0,0
+Mayfair,21,0,0,0
+Mayfair,22,0,0,0
+Mayfair,23,0,0,0
+Mayfair,24,0,0,0
+Mayfair,25,0,0,0
+Mayfair,26,0,0,0
+Mayfair,27,0,0,0
+Mayfair,28,0,0,0
+Mayfair,29,0,0,0
+Mayfair,30,0,0,0
+Mayfair,31,0,0,0
+Mayfair,32,0,0,0
+Mayfair,33,0,0,0
+Mayfair,34,0,0,0
+Mayfair,35,0,0,0
+Mayfair,36,0,0,0
+Mayfair,37,0,0,0
+Mayfair,38,0,0,0
+Mayfair,39,0,0,0
+Mayfair,40,0,0,0
+Mayfair,41,0,0,0
+Mayfair,42,0,0,0
+Mayfair,43,0,0,400
+Mayfair,44,0,2634,0
+Mayfair,45,0,5916,200
+Mayfair,46,0,7471,0
+Regent Street,1,280000000,0,0
+Regent Street,2,276000000,0,0
+Regent Street,3,257000000,0,0
+Regent Street,4,273000000,0,300
+Regent Street,5,344000000,21951,0
+Regent Street,6,341300000,24733,150
+Regent Street,7,290000000,20570,0
+Regent Street,8,308000000,22000,0
+Regent Street,9,295200000,23417,0
+Regent Street,10,243900000,19251,0
+Regent Street,11,209600000,16890,0
+Regent Street,12,204600000,15488,0
+Regent Street,13,167000000,12805,0
+Regent Street,14,125200000,9830,0
+Regent Street,15,107000000,7931,0
+Regent Street,16,72400000,5322,0
+Regent Street,17,34600000,2203,0
+Regent Street,18,11700000,865,0
+Regent Street,19,4800000,294,0
+Regent Street,20,2300000,135,0
+Regent Street,21,1200000,106,0
+Regent Street,22,1900000,178,0
+Regent Street,23,2200000,251,0
+Regent Street,24,2900000,368,150
+Regent Street,25,2700000,333,0
+Regent Street,26,3400000,340,0
+Regent Street,27,2900000,318,0
+Regent Street,28,2200000,277,0
+Regent Street,29,2300000,274,0
+Regent Street,30,1743000,205,0
+Regent Street,31,1500000,217,0
+Regent Street,32,1400000,193,0
+Regent Street,33,1000000,142,0
+Regent Street,34,900000,157,0
+Regent Street,35,1300000,229,0
+Regent Street,36,2900000,567,0
+Regent Street,37,3500000,638,0
+Regent Street,38,4200000,889,0
+Regent Street,39,5500000,1194,0
+Regent Street,40,6900000,1607,0
+Regent Street,41,9400000,2107,0
+Regent Street,42,10300000,2438,150
+Regent Street,43,13700000,3334,0
+Regent Street,44,14800000,3554,0
+Regent Street,45,15600000,3885,0
+Regent Street,46,16700000,4192,0
+Water Works,1,0,0,0
+Water Works,2,0,0,0
+Water Works,3,0,0,0
+Water Works,4,0,0,0
+Water Works,5,0,0,0
+Water Works,6,0,0,0
+Water Works,7,0,0,0
+Water Works,8,0,0,0
+Water Works,9,0,0,0
+Water Works,10,0,0,0
+Water Works,11,0,0,0
+Water Works,12,0,0,0
+Water Works,13,0,0,0
+Water Works,14,0,0,0
+Water Works,15,0,0,0
+Water Works,16,0,0,150
+Water Works,17,6100000,1154,0
+Water Works,18,9200000,1723,0
+Water Works,19,6100000,1181,0
+Water Works,20,7600000,1574,75
+Water Works,21,11000000,2133,0
+Water Works,22,11200000,2311,0
+Water Works,23,12600000,2203,0
+Water Works,24,16900000,2361,0
+Water Works,25,18600000,3239,0
+Water Works,26,27200000,5080,0
+Water Works,27,19800000,3767,0
+Water Works,28,18200000,2819,0
+Water Works,29,17700000,3292,0
+Water Works,30,14700000,2884,0
+Water Works,31,19900000,3999,0
+Water Works,32,32800000,6072,0
+Water Works,33,33800000,6022,0
+Water Works,34,23200000,4511,0
+Water Works,35,27500000,4849,0
+Water Works,36,13200000,2273,0
+Water Works,37,11600000,2096,0
+Water Works,38,9100000,1776,0
+Water Works,39,7700000,1510,0
+Water Works,40,6000000,1166,0
+Water Works,41,4800000,1063,75
+Water Works,42,4100000,897,0
+Water Works,43,3100000,704,0
+Water Works,44,2500000,569,0
+Water Works,45,1900000,386,0
+Water Works,46,1400000,276,0
