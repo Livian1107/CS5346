@@ -1,109 +1,78 @@
 <!DOCTYPE html>
-
+<meta charset="utf-8">
 <body>
-
-<script src="https://d3js.org/d3.v4.js"></script>	<!-- This downloads d3 library -->
-
+<script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-chart = {  
-  const svg = d3.create("svg")
-      .attr("viewBox", [0, 0, width, height]);
 
-  svg.append("g")
-    .selectAll("g")
-    .data(series)
-    .join("g")
-      .attr("fill", ({key}) => color(key))
-      .call(g => g.selectAll("rect")
-        .data(d => d)
-        .join("rect")
-          .attr("x", d => x(d.data.year))
-          .attr("y", d => y(d[1]))
-          .attr("width", x.bandwidth() - 1)
-          .attr("height", d => y(d[0]) - y(d[1]))
-       .append("title")
-          .text(d => `${d.data.name}, ${d.data.year}
-${formatRevenue(d.data.value)}`));
+var width = 960,
+    height = 500;
 
-  svg.append("g")
-      .call(xAxis);
+var nodes = d3.range(200).map(function() { return {radius: Math.random() * 12 + 4}; }),
+    root = nodes[0],
+    color = d3.scale.category10();
 
-  svg.append("g")
-      .call(yAxis);
+root.radius = 0;
+root.fixed = true;
 
-  return svg.node();
+var force = d3.layout.force()
+    .gravity(0.05)
+    .charge(function(d, i) { return i ? 0 : -2000; })
+    .nodes(nodes)
+    .size([width, height]);
+
+force.start();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.selectAll("circle")
+    .data(nodes.slice(1))
+  .enter().append("circle")
+    .attr("r", function(d) { return d.radius; })
+    .style("fill", function(d, i) { return color(i % 3); });
+
+force.on("tick", function(e) {
+  var q = d3.geom.quadtree(nodes),
+      i = 0,
+      n = nodes.length;
+
+  while (++i < n) q.visit(collide(nodes[i]));
+
+  svg.selectAll("circle")
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
+});
+
+svg.on("mousemove", function() {
+  var p1 = d3.mouse(this);
+  root.px = p1[0];
+  root.py = p1[1];
+  force.resume();
+});
+
+function collide(node) {
+  var r = node.radius + 16,
+      nx1 = node.x - r,
+      nx2 = node.x + r,
+      ny1 = node.y - r,
+      ny2 = node.y + r;
+  return function(quad, x1, y1, x2, y2) {
+    if (quad.point && (quad.point !== node)) {
+      var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y),
+          r = node.radius + quad.point.radius;
+      if (l < r) {
+        l = (l - r) / l * .5;
+        node.x -= x *= l;
+        node.y -= y *= l;
+        quad.point.x += x;
+        quad.point.y += y;
+      }
+    }
+    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+  };
 }
 
-data = Object.assign(d3.csvParse(await FileAttachment("music.csv").text(), ({Format, Year, ["Revenue (Inflation Adjusted)"]: Revenue}) => ({name: Format, year: +Year, value: +Revenue})), {y: "Revenue (billions, adj.)"})
-
-colors = new Map([
-  ["LP/EP", "#2A5784"],
-  ["Vinyl Single", "#43719F"],
-  ["8 - Track", "#5B8DB8"],
-  ["Cassette", "#7AAAD0"],
-  ["Cassette Single", "#9BC7E4"],
-  ["Other Tapes", "#BADDF1"],
-  ["Kiosk", "#E1575A"],
-  ["CD", "#EE7423"],
-  ["CD Single", "#F59D3D"],
-  ["SACD", "#FFC686"],
-  ["DVD Audio", "#9D7760"],
-  ["Music Video (Physical)", "#F1CF63"],
-  ["Download Album", "#7C4D79"],
-  ["Download Single", "#9B6A97"],
-  ["Ringtones & Ringbacks", "#BE89AC"],
-  ["Download Music Video", "#D5A5C4"],
-  ["Other Digital", "#EFC9E6"],
-  ["Synchronization", "#BBB1AC"],
-  ["Paid Subscription", "#24693D"],
-  ["On-Demand Streaming (Ad-Supported)", "#398949"],
-  ["Other Ad-Supported Streaming", "#61AA57"],
-  ["SoundExchange Distributions", "#7DC470"],
-  ["Limited Tier Paid Subscription", "#B4E0A7"]
-])
-	
-series = d3.stack()
-    .keys(Array.from(colors.keys()))
-    .value((group, key) => group.get(key).value)
-    .order(d3.stackOrderReverse)
-  (Array.from(d3.rollup(data, ([d]) => d, d => d.year, d => d.name).values()))
-    .map(s => (s.forEach(d => d.data = d.data.get(s.key)), s))
-
-x = d3.scaleBand()
-    .domain(data.map(d => d.year))
-    .rangeRound([margin.left, width - margin.right])
-	
-y = d3.scaleLinear()
-    .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]).nice()
-    .range([height - margin.bottom, margin.top])
-
-color = d3.scaleOrdinal()
-    .domain(Array.from(colors.keys()))
-    .range(Array.from(colors.values()))
-	
-xAxis = g => g
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x)
-        .tickValues(d3.ticks(...d3.extent(x.domain()), width / 80))
-        .tickSizeOuter(0))
-	
-yAxis = g => g
-    .attr("transform", `translate(${margin.left},0)`)
-    .call(d3.axisLeft(y)
-        .tickFormat(x => (x / 1e9).toFixed(0)))
-    .call(g => g.select(".domain").remove())
-    .call(g => g.select(".tick:last-of-type text").clone()
-        .attr("x", 3)
-        .attr("text-anchor", "start")
-        .attr("font-weight", "bold")
-        .text(data.y))
-	
-formatRevenue = x => (+(x / 1e9).toFixed(2) >= 1) 
-    ? `${(x / 1e9).toFixed(2)}B` 
-    : `${(x / 1e6).toFixed(0)}M`
-
-height = 500
-margin = ({top: 20, right: 30, bottom: 30, left: 30})
-d3 = require("d3@5", "d3-array@2")
-import {swatches} from "@d3/color-legend"
 </script>
