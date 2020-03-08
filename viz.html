@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-
+<head>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
 <body>
-<script src="https://d3js.org/d3.v3.min.js"></script>
-</body>
 <script>
-
     data = [
       {
         faculty: 'Faculty of Engineering',
@@ -68,9 +67,6 @@
         color: '#507dca'
       }
     ];
-
-
-    var div = d3.select("body").append("div").attr("class", "toolTip");
 
     var axisMargin = 20,
             margin = 40,
@@ -156,8 +152,11 @@
             .attr("class", "axisHorizontal")
             .attr("transform", "translate(" + (margin + facultyWidth) + ","+ (height - axisMargin - margin)+")")
             .call(xAxis);
+    
+    var div = d3.select("body").append("div").attr("class", "toolTip");
 
 </script>
+</body>
     <style>
 
     body {
@@ -213,3 +212,4 @@
     }
 
 </style>
+
