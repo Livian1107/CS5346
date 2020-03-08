@@ -3,20 +3,24 @@
 <body>
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
-<script>
+  <script>
+
 //Simple animated example of d3-cloud - https://github.com/jasondavies/d3-cloud
-  
+//Based on https://github.com/jasondavies/d3-cloud/blob/master/examples/simple.html
+
 // Encapsulate the word cloud functionality
 function wordCloud(selector) {
+
     var fill = d3.scale.category20();
-  
+
     //Construct the word cloud's SVG element
     var svg = d3.select(selector).append("svg")
         .attr("width", 500)
         .attr("height", 500)
         .append("g")
         .attr("transform", "translate(250,250)");
-  
+
+
     //Draw the word cloud
     function draw(words) {
         var cloud = svg.selectAll("g text")
@@ -40,7 +44,17 @@ function wordCloud(selector) {
                     return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
                 })
                 .style("fill-opacity", 1);
+
+        //Exiting words
+        cloud.exit()
+            .transition()
+                .duration(200)
+                .style('fill-opacity', 1e-6)
+                .attr('font-size', 1)
+                .remove();
     }
+
+
     //Use the module pattern to encapsulate the visualisation code. We'll
     // expose only the parts that need to be public.
     return {
@@ -60,9 +74,15 @@ function wordCloud(selector) {
                 .start();
         }
     }
+
 }
+
+//Some sample data - http://en.wikiquote.org/wiki/Opening_lines
 var words = [
-    "You don't know about me without you have read a book called The Adventures of Tom Sawyer but that ain't no matter. The boy with fair hair lowered himself down the last few feet of rock and began to pick his way toward the lagoon. When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton. It was inevitable: the scent of bitter almonds always reminded him of the fate of unrequited love."
+    "You don't know about me without you have read a book called The Adventures of Tom Sawyer but that ain't no matter.",
+    "The boy with fair hair lowered himself down the last few feet of rock and began to pick his way toward the lagoon.",
+    "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton.",
+    "It was inevitable: the scent of bitter almonds always reminded him of the fate of unrequited love."
 ]
 
 //Prepare one of the sample sentences by removing punctuation,
@@ -72,10 +92,25 @@ function getWords(i) {
             .replace(/[!\.,:;\?]/g, '')
             .split(' ')
             .map(function(d) {
-                return d.text;
+                return {text: d, size: 10 + Math.random() * 60};
             })
 }
+
+//This method tells the word cloud to redraw with a new set of words.
+//In reality the new words would probably come from a server request,
+// user input or some other source.
+function showNewWords(vis, i) {
+    i = i || 0;
+
+    vis.update(getWords(i ++ % words.length))
+    setTimeout(function() { showNewWords(vis, i + 1)}, 2000)
+}
+
 //Create a new instance of the word cloud visualisation.
 var myWordCloud = wordCloud('body');
+
+//Start cycling through the demo data
+//showNewWords(myWordCloud);
+
 
 </script>
