@@ -3,6 +3,11 @@ layout: default
 title: How to build a tooltip bar chart with d3?
 description: This is a step-by-step instruction to build a tooltip bar chart with d3.
 ---
+In this article, we will learn step-by-step how we can use d3 to build a bar chart with tooltip available.
+
+We will take Singapore GES Faculty emplotment rate data as example to perform the visualization.
+
+Here is a [quick look](./viz.html) at the final interactive chart.
 
 ## Step 1: Start with an empty HTML file
 ```html
