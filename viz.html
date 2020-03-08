@@ -10,82 +10,57 @@
     <div id="my-chart"></div>
       
     <script src="//d3js.org/d3.v3.min.js"></script>
-    
-    <!-- Include our script that will make our bar chart. -->
-    <script type="text/javascript" src="chart.js"></script>
   </body>
     
 <script>
 
-var width = 960,
-    height = 500;
+// Sample dataset. In a real application, you will probably get this data from another source such as AJAX.
+var dataset = [5, 10, 15, 20, 25]
 
-var nodes = d3.range(200).map(function() { return {radius: Math.random() * 12 + 4}; }),
-    root = nodes[0],
-    color = d3.scale.category10();
+// Sizing variables for our chart. These are saved as variables as they will be used in calculations.
+var chartWidth = 300
+var chartHeight = 100
+var padding = 5
 
-root.radius = 0;
-root.fixed = true;
+// We want our our bars to take up the full height of the chart, so, we will apply a scaling factor to the height of every bar.
+var heightScalingFactor = chartHeight / getMax(dataset)
 
-var force = d3.layout.force()
-    .gravity(0.05)
-    .charge(function(d, i) { return i ? 0 : -2000; })
-    .nodes(nodes)
-    .size([width, height]);
+// Here we are creating the SVG that will be our chart.
+var svg = d3
+  .select('#my-chart')           // I'm starting off by selecting the container.
+    .append('svg')               // Appending an SVG element to that container.
+    .attr('width', chartWidth)   // Setting the width of the SVG.
+    .attr('height', chartHeight) // And setting the height of the SVG.
 
-force.start();
+// The next step is to create the rectangles that will make up the bars in our bar chart.
+svg
+  .selectAll('rect')                                          // I'm selecting all of the rectangles in the SVG (note that at this point, there actually aren't any, but we'll be creating them in a couple of steps).
+  .data(dataset)                                              // Then I'm mapping the dataset to those rectangles.
+  .enter()                                                    // This step is important in that it allows us to dynamically create the rectangle elements that we selected previously.
+    .append('rect')                                           // For each element in the dataset, append a new rectangle.
+      .attr('x', function (value, index) {                    // Set the X position of the rectangle by taking the index of the current item we are creating, multiplying it by the calculated width of each bar, and adding a padding value so we can see some space between bars.
+          return (index * (chartWidth / dataset.length)) + padding
+        })
+      .attr('y', function (value, index) {                    // Set the rectangle by subtracting the scaled height from the height of the chart (this has to be done becuase SVG coordinates start with 0,0 at their top left corner).
+        return chartHeight - (value * heightScalingFactor)
+      })
+      .attr('width', (chartWidth / dataset.length) - padding) // The width is dynamically calculated to have an even distribution of bars that take up the entire width of the chart.
+      .attr('height', function (value, index) {               // The height is simply the value of the item in the dataset multiplied by the height scaling factor.
+        return value * heightScalingFactor
+      })
+      .attr('fill', 'pink')                                   // Sets the color of the bars.
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+/**
+ *  Gets the maximum value in a collection of numbers.
+ */
+function getMax(collection) {
+  var max = 0
 
-svg.selectAll("circle")
-    .data(nodes.slice(1))
-  .enter().append("circle")
-    .attr("r", function(d) { return d.radius; })
-    .style("fill", function(d, i) { return color(i % 3); });
+  collection.forEach(function (element) {
+    max = element > max ? element : max
+  })
 
-force.on("tick", function(e) {
-  var q = d3.geom.quadtree(nodes),
-      i = 0,
-      n = nodes.length;
-
-  while (++i < n) q.visit(collide(nodes[i]));
-
-  svg.selectAll("circle")
-      .attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; });
-});
-
-svg.on("mousemove", function() {
-  var p1 = d3.mouse(this);
-  root.px = p1[0];
-  root.py = p1[1];
-  force.resume();
-});
-
-function collide(node) {
-  var r = node.radius + 16,
-      nx1 = node.x - r,
-      nx2 = node.x + r,
-      ny1 = node.y - r,
-      ny2 = node.y + r;
-  return function(quad, x1, y1, x2, y2) {
-    if (quad.point && (quad.point !== node)) {
-      var x = node.x - quad.point.x,
-          y = node.y - quad.point.y,
-          l = Math.sqrt(x * x + y * y),
-          r = node.radius + quad.point.radius;
-      if (l < r) {
-        l = (l - r) / l * .5;
-        node.x -= x *= l;
-        node.y -= y *= l;
-        quad.point.x += x;
-        quad.point.y += y;
-      }
-    }
-    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-  };
+  return max
 }
 
 </script>
