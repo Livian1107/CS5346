@@ -139,29 +139,6 @@ Add the following codes below the svg in the _script_
 ## Step 6: Define the axis scale and display the axis domain
 Add the following codes in the _script_
 ```javascript
- bar.append("text")
-            .attr("class", "label")
-            .attr("y", barHeight / 2)
-            .attr("dy", ".35em") //vertical align middle
-            .text(function(d){
-                return d.label;
-            }).each(function() {
-        labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
-    });
-    
-  scale = d3.scale.linear()
-            .domain([0, max])
-            .range([0, width - margin*2 - labelWidth]);
-    
-  xAxis = d3.svg.axis()
-            .scale(scale)
-            .tickSize(-height + 2*margin + axisMargin)
-            .orient("bottom"); 
-```
-
-## Step 6: Define the axis scale and display the axis domain
-Add the following codes in the _script_
-```javascript
   bar.append("text")
             .attr("class", "label")
             .attr("y", barHeight / 2)
@@ -294,12 +271,12 @@ Besides, add the following codes into the _style sheet_
 
 We are DONE!
 
-You can visit her for the DEMO. 
-Here is the source code.
+You can visit her for the [DEMO](./viz.html). 
+Here is the [source code](https://github.com/Livian1107/CS5346/blob/master/viz.html).
 
 Thank you!
 
 
-_March 7, 2020_
+_March 8, 2020_
 
 [back](./)
