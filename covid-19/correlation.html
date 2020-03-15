@@ -1,0 +1,181 @@
+<!-- Styles -->
+<style>
+body { background-color: #30303d; color: #fff; }
+#chartdiv {
+  width: 100%;
+  height: 500px
+}
+
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://d3js.org/d3.v5.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_dark);
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+chart.numberFormatter.bigNumberPrefixes = [
+  { "number": 1e+3, "suffix": "K" },
+  { "number": 1e+6, "suffix": "M" },
+  { "number": 1e+9, "suffix": "B" }
+];
+
+var valueAxisX = chart.xAxes.push(new am4charts.ValueAxis());
+valueAxisX.renderer.ticks.template.disabled = true;
+valueAxisX.renderer.axisFills.template.disabled = true;
+
+var valueAxisY = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxisY.renderer.ticks.template.disabled = true;
+valueAxisY.renderer.axisFills.template.disabled = true;
+
+// axis break
+// var axisBreak = valueAxisY.axisBreaks.create();
+// axisBreak.startValue = 900000000;
+// axisBreak.endValue = 600000000;
+// //axisBreak.breakSize = 0.005;
+
+// // fixed axis break
+// var d = (axisBreak.endValue - axisBreak.startValue) / (valueAxisY.max - valueAxisY.min);
+// axisBreak.breakSize = 0.05 * (1 - d) / d; // 0.05 means that the break will take 5% of the total value axis height
+
+
+Promise.all([
+    d3.csv("./international_tourism.csv"),
+    d3.csv("./time_series_covid_19_confirmed.csv")
+]).then(function(files) {
+    // files[0] will contain file1.csv
+    // files[1] will contain file2.csv
+    var sum = [];
+    var data = files[1];
+
+    data.forEach(function(o) {
+      var existing = sum.filter(function(i) { return i.Country == o.Country })[0];
+      if (!existing)
+          sum.push(o);
+      else {
+        for(let i=1; i<=50; i++) {
+          existing[i] = parseInt(existing[i]);
+          existing[i] += parseInt(o[i]);
+        }
+      }
+    });
+
+    var output = sum.slice();
+
+    //now loop arr2, and see if exists in ouput or not
+    files[0].forEach(function (item) {
+      //lets find in arr1
+      var f = output.find(function(i) { return item.Country === i.Country; });
+      if (f) {
+        //ok found lets update
+        f.Tourism = item['2018'];
+      } else {
+        //not found lets add
+        output.push(item);
+      }
+    });
+
+    //ok if we want 0, for OpenTickets and ClosedTickets if none found
+    output.forEach(function (item) {
+      item.Tourism = item.Tourism | 0;
+    });
+
+    var filtered = [];
+    
+    filtered = output.filter(function(i){ return i.Tourism != 0 && i.Country!="Mainland China";});
+    
+    var correlation = [];
+    correlation = filtered.map(d => {
+        return {
+            "title": d['Country'],
+            "id": d['Country Code'],
+            "x": d['50'],
+            "y": d['Tourism'],
+            "value": d['50']*10
+        }
+    })
+
+    var series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueX = "x";
+    series.dataFields.valueY = "y";
+    series.dataFields.value = "value";
+    series.strokeOpacity = 0;
+    series.sequencedInterpolation = true;
+    series.tooltip.pointerOrientation = "vertical";
+    chart.data = correlation;
+
+    var bullet = series.bullets.push(new am4core.Circle());
+    bullet.fill = am4core.color("#ff0000");
+    bullet.propertyFields.fill = "color";
+    bullet.strokeOpacity = 0;
+    bullet.strokeWidth = 2;
+    bullet.fillOpacity = 0.5;
+    bullet.stroke = am4core.color("#ffffff");
+    bullet.hiddenState.properties.opacity = 0;
+    bullet.tooltipText = "[bold]{title}:[/]\nTourism: {valueY.value.formatNumber('#.as')}\nConfirmed Cases:{valueX.value.formatNumber('#.as')}";
+    bullet.adapter.add("fill", function(fill, target) {
+      return chart.colors.getIndex(target.dataItem.index);
+    });
+
+    var outline = chart.plotContainer.createChild(am4core.Circle);
+    outline.fillOpacity = 0;
+    outline.strokeOpacity = 0.8;
+    outline.stroke = am4core.color("#ff0000");
+    outline.strokeWidth = 2;
+    outline.hide(0);
+
+    var blurFilter = new am4core.BlurFilter();
+    outline.filters.push(blurFilter);
+
+    bullet.events.on("over", function(event) {
+        var target = event.target;
+        outline.radius = target.pixelRadius + 2;
+        outline.x = target.pixelX;
+        outline.y = target.pixelY;
+        outline.show();
+    })
+
+    bullet.events.on("out", function(event) {
+        outline.hide();
+    })
+
+    var hoverState = bullet.states.create("hover");
+    hoverState.properties.fillOpacity = 1;
+    hoverState.properties.strokeOpacity = 1;
+
+    series.heatRules.push({ target: bullet, min: 2, max: 60, property: "radius" });
+
+    bullet.adapter.add("tooltipY", function (tooltipY, target) {
+        return -target.radius;
+    })
+
+    chart.cursor = new am4charts.XYCursor();
+    chart.cursor.behavior = "zoomXY";
+    chart.cursor.snapToSeries = series;
+    chart.legend = new am4charts.Legend();
+    chart.legend.position = "right";
+    chart.legend.scrollable = true;
+
+    chart.scrollbarX = new am4core.Scrollbar();
+    chart.scrollbarY = new am4core.Scrollbar();
+    
+})
+
+
+}); // end am4core.ready()
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>

@@ -1,0 +1,203 @@
+<!-- Styles -->
+<style>
+body { background-color: #30303d; color: #fff; }
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://d3js.org/d3.v5.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_dark);
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+chart.padding(40, 40, 40, 40);
+
+var stepDuration = 800;
+var label = chart.plotContainer.createChild(am4core.Label);
+label.x = am4core.percent(97);
+label.y = am4core.percent(95);
+label.horizontalCenter = "right";
+label.verticalCenter = "middle";
+label.dx = -15;
+label.fontSize = 25;
+
+
+var playButton = chart.plotContainer.createChild(am4core.PlayButton);
+playButton.x = am4core.percent(97);
+playButton.y = am4core.percent(95);
+playButton.dy = -2;
+playButton.verticalCenter = "middle";
+
+var startDate = new Date('January 22, 2020');
+var endDate = new Date('March 11, 2020');
+var endDay = 50;
+var date = new Date();
+date.setMonth(startDate.getMonth());
+date.setDate(startDate.getDate());
+date.setFullYear(startDate.getFullYear());
+var day = 1;
+label.text = date.toString();
+
+d3.csv("./time_series_covid_19_confirmed.csv")
+  .then( (data) => {
+    var confirmed = [];
+
+    var sum = [];
+
+    data.forEach(function(o) {
+      var existing = sum.filter(function(i) { return i.Country == o.Country })[0];
+      if (!existing)
+          sum.push(o);
+      else {
+        for(let i=1; i<=50; i++) {
+          existing[i] = parseInt(existing[i]);
+          existing[i] += parseInt(o[i]);
+        }
+      }
+    });
+    
+    var filtered = [];
+    
+    filtered = sum.filter(function(i){ return i.Country!= "Mainland China" && i.Country != "China" && "Taipei environs" && i.Country != "Others";});
+
+    for(let i=1; i<=endDay; i++) {
+      confirmed[i] = filtered.map(d => {
+        return {
+          "country": d.Country,
+          "confirmed": d[i.toString()]
+        }
+      });
+    }
+
+    var allData = confirmed;
+
+    var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.dataFields.category = "country";
+    categoryAxis.renderer.minGridDistance = 1;
+    categoryAxis.renderer.inversed = true;
+    categoryAxis.renderer.grid.template.disabled = true;
+
+    var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+    valueAxis.min = 0;
+    valueAxis.rangeChangeEasing = am4core.ease.linear;
+    valueAxis.rangeChangeDuration = stepDuration;
+
+    var series = chart.series.push(new am4charts.ColumnSeries());
+    series.dataFields.categoryY = "country";
+    series.dataFields.valueX = "confirmed";
+    series.tooltipText = "{valueX.value}"
+    series.columns.template.strokeOpacity = 0;
+    series.columns.template.column.cornerRadiusBottomRight = 5;
+    series.columns.template.column.cornerRadiusTopRight = 5;
+    series.interpolationDuration = stepDuration;
+    series.interpolationEasing = am4core.ease.linear;
+
+    // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
+    series.columns.template.adapter.add("fill", function(fill, target){
+      return chart.colors.getIndex(target.dataItem.index);
+    });
+    
+    categoryAxis.sortBySeries = series;
+
+    var labelBullet = series.bullets.push(new am4charts.LabelBullet())
+    labelBullet.label.horizontalCenter = "right";
+    labelBullet.label.text = "{values.valueX.workingValue.formatNumber('#.')}";
+    labelBullet.label.textAlign = "end";
+    labelBullet.label.dx = -10;
+
+    var interval;
+
+    function play() {
+      interval = setInterval(function(){
+        nextDay();
+      }, stepDuration)
+      nextDay();
+    }
+
+    function stop() {
+      if (interval) {
+        clearInterval(interval);
+      }
+    }
+
+    playButton.events.on("toggled", function(event) {
+      if (event.target.isActive) {
+        play();
+      }
+      else {
+        stop();
+      }
+    })
+
+    function nextDay() {
+      if (day == 50) {
+        day = 1;
+        date.setMonth(startDate.getMonth());
+        date.setDate(startDate.getDate());
+        date.setFullYear(startDate.getFullYear());
+        stop()
+        return;
+      }
+
+      date.setDate(date.getDate() + 1)
+      day++
+
+      var newData = allData[day];
+      var itemsWithNonZero = 0;
+      for (var i = 0; i < chart.data.length; i++) {
+        chart.data[i].confirmed = newData[i].confirmed;
+        if (chart.data[i].confirmed > 0) {
+          itemsWithNonZero++;
+        }
+      }
+
+      if (day == 1) {
+        series.interpolationDuration = stepDuration / 4;
+        valueAxis.rangeChangeDuration = stepDuration / 4;
+      }
+      else {
+        series.interpolationDuration = stepDuration;
+        valueAxis.rangeChangeDuration = stepDuration;
+      }
+
+      chart.invalidateRawData();
+      label.text = date.toString();
+
+      itemsWithNonZero = Math.min(10, itemsWithNonZero);
+      
+      categoryAxis.zoom({ start: 0, end: itemsWithNonZero / categoryAxis.dataItems.length });
+    }
+
+    chart.data = JSON.parse(JSON.stringify(allData[day]));
+    categoryAxis.zoom({ start: 1, end: 1 / chart.data.length });
+
+    series.events.on("inited", function() {
+      setTimeout(function() {
+        playButton.isActive = true; // this starts interval
+      }, 2000)
+    });
+
+  });
+
+
+
+});
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>
