@@ -8,6 +8,7 @@ _March 29, 2020_
 
 ##### **Student Name:** Lai Liwen
 ##### **Matriculation Number:** A0162537A
+##### **Link:** [https://livian1107.github.io/CS5346/singapore_population/singapore.html](https://livian1107.github.io/CS5346/singapore_population/singapore.html)
 
 This dataset is about the annual population of Singapore residents (citizens and permanent residents) by age groups, ethnic group and gender from 1957-2018, manageed by MInistry of Trade and Industry - Department of Statistics. From this dataset, we could visualize the trend of Singapore total population since the last half decade through a simple bar chart. As the population by age, ethnic and gender groups are also included, we could leverage population pyramid and fow chart to visualize the weightage of various groups in the total population, which will be shown as following. 
 
