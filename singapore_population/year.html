@@ -1,113 +1,116 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<style>
+  body {
+    background-color: #F1F3F3
+  }
 
-<head>
-	<style>
+  .axis {
+    font: 15px sans-serif;
+  }
 
-	.axis {
-	  font: 10px sans-serif;
-	}
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #D4D8DA;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+  }
 
-	.axis path,
-	.axis line {
-	  fill: none;
-	  stroke: #000;
-	  shape-rendering: crispEdges;
-	}
-
-	</style>
-</head>
-
-<body>
-	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+  .toolTip {
+    position: absolute;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #6F257F;
+    padding: 14px;
+    text-align: center;
+  }
+</style>
+<svg width="960" height="500"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
 <script>
+  var svg = d3.select("svg"),
+    margin = { top: 20, right: 20, bottom: 30, left: 50 },
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+    label_height = height + margin.bottom;
+  var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+  var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
 
-// Parse the date / time
-var	parseDate = d3.time.format("%Y").parse;
+  var colours = d3.scaleOrdinal()
+    .range(["#6F257F", "#CA0D59"]);
 
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+  var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+  d3.csv("./population.csv", function (error, data) {
+    var filtered = [];
 
-var y = d3.scale.linear().range([height, 0]);
+    filtered = data.filter(d => d['level_1'] == 'Total Residents' && !isNaN(d['value']));
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-    .tickFormat(d3.time.format("%Y-%m"));
+    var sum = [];
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
+    filtered.forEach(function (o) {
+      var existing = sum.filter(function (i) { return i['year'] == o['year'] })[0];
+      if (!existing)
+        sum.push(o);
+      else {
+        existing['value'] = parseInt(existing['value']);
+        existing['value'] += parseInt(o['value']);
+      }
+    });
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+    if (error) throw error;
 
-d3.csv("./population.csv", function(error, data) {
-  var filtered = [];
+    x.domain(sum.map(function (d) { return d.year; }));
+    y.domain([0, d3.max(sum, function (d) { return d.value; })]);
 
-  filtered =  data.filter(d => d['level_1'] =='Total Residents');
 
-  var sum = [];
+    g.append("g")
+      .attr("class", "axis axis--x")
+      // .call(d3.axisBottom(x))
+      //.attr("transform", "translate(0," + height + ")")
+      .append("text")
+      //.attr("transform", "translate(10, 20)")      
+      .attr("transform", "translate(" + width/2 + ',' + label_height + ")")
+      .attr("text-anchor", "end")
+      .attr("fill", "#5D6971")
+      .text("Year");
 
-  filtered.forEach(function (o) {
-    var existing = sum.filter(function (i) { return i['year'] == o['year'] })[0];
-    if (!existing)
-      sum.push(o);
-    else {
-      existing['value'] = parseInt(existing['value']);
-      existing['vlaue'] += parseInt(o['value']);
-    }
-  });
-console.log(filtered)
-  console.log(sum)
-
-  sum.forEach(d=>{
-    d.year = parseDate(d.year);
-  })
-	
-  x.domain(sum.map(function(d) { return d.year; }));
-  y.domain([0, d3.max(sum, function(d) { return d.value; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
+    g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(5).tickFormat(function (d) { return parseInt(d / 1000) + "K"; }).tickSizeInner([-width]))
+      .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Value ($)");
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .attr("fill", "#5D6971")
+      .text("Population");
 
-  svg.selectAll("bar")
+    g.selectAll(".bar")
       .data(sum)
-    .enter().append("rect")
-      .style("fill", "steelblue")
-      .attr("x", function(d) { return x(d.year); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); });
-
-});
+      .enter().append("rect")
+      .attr("x", function (d) { return x(d.year); })
+      .attr("y", function (d) { return y(d.value); })
+      .attr("width", x.bandwidth())
+      .attr("height", function (d) { return height - y(d.value); })
+      .attr("fill", function (d) { return colours(d.year); })
+      .on("mousemove", function (d) {
+        tooltip
+          .style("left", d3.event.pageX - 50 + "px")
+          .style("top", d3.event.pageY - 70 + "px")
+          .style("display", "inline-block")
+          .html((d.year) + "<br>" + "Population: " + (d.value));
+      })
+      .on("mouseout", function (d) { tooltip.style("display", "none"); });
+   
+  });
 
 </script>
 
