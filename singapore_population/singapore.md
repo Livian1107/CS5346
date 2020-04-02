@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Singapore Population 2018 Analytics
-description: 2018 Singapore population pyramid over gender and distribution flow over various ethnic groups.
+description: 2018 Singapore population distribution over age, gender and ethnic groups
 ---
 
 _March 29, 2020_
 
-**Student Name:** Lai Liwen
-**Matriculation Number:** A0162537A
+##### **Student Name:** Lai Liwen
+##### **Matriculation Number:** A0162537A
 
 This dataset is about the annual population of Singapore residents (citizens and permanent residents) by age groups, ethnic group and gender from 1957-2018, manageed by MInistry of Trade and Industry - Department of Statistics. From this dataset, we could visualize the trend of Singapore total population since the last half decade through a simple bar chart. As the population by age, ethnic and gender groups are also included, we could leverage population pyramid and fow chart to visualize the weightage of various groups in the total population, which will be shown as following. 
 
